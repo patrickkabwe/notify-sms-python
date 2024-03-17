@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 
 import requests
 
-from notify.notify_types import APIResponse, AuthResponse, SendersAPIResponse
+from notify_sms.notify_types import APIResponse, AuthResponse, SendersAPIResponse
 
 
 @dataclass

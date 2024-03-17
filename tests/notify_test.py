@@ -4,7 +4,7 @@ import pytest
 import requests
 from dotenv import load_dotenv
 
-from notify import notify_sms
+from notify_sms import notify_sms
 
 load_dotenv()
 
