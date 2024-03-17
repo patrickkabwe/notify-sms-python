@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "notify"
+name = "notify_sms_py"
 version = "1.0.0"
 description = "Notify is a bulk SMS Module for sending SMS's accross local zambian phone numbers. It is embedded in [GameBox - Download the app here.]( https://play.google.com/store/apps/details?id=com.microtech.gamebox)"
 readme = "README.md"

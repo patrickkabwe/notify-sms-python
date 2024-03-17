@@ -1,28 +1,10 @@
 import re
-from dataclasses import dataclass
 from typing import Any, Dict, List
 
 import requests
 
-from notify_sms.notify_types import APIResponse, AuthResponse, SendersAPIResponse
-
-
-@dataclass
-class Config:
-    """Config is the configuration for the Notify SMS API."""
-
-    user_name: str
-    password: str
-
-    def __post_init__(self):
-
-        if not self.user_name:
-            raise ValueError("Username is required")
-        match = re.search(r"^(\+)?(\d{12})$", self.user_name)
-        if not match:
-            raise ValueError("Invalid username")
-        if not self.password:
-            raise ValueError("Password is required")
+from notify_sms_py.notify_types import (APIResponse, AuthResponse,
+                                        SendersAPIResponse)
 
 
 class NewClient:
@@ -33,8 +15,18 @@ class NewClient:
     base_url = "https://production.olympusmedia.co.zm/api/v1"
     token = None
 
-    def __init__(self, config: Config):
-        self.config = config
+    def __init__(self, username: str, password: str):
+
+        self.username = username
+        self.password = password
+
+        if not self.username:
+            raise ValueError("Username is required")
+        match = re.search(r"^(\+)?(\d{12})$", self.username)
+        if not match:
+            raise ValueError("Invalid username")
+        if not self.password:
+            raise ValueError("Password is required")
         self.__auth()
 
     def __auth(self):
@@ -42,8 +34,8 @@ class NewClient:
             endpoint = f"{self.base_url}/authentication/web/login?error_context=CONTEXT_API_ERROR_JSON"
 
             payload = {
-                "username": self.config.user_name,
-                "password": self.config.password,
+                "username": self.username,
+                "password": self.password,
             }
             response = requests.post(endpoint, json=payload, timeout=5)
             response.raise_for_status()
@@ -77,7 +69,7 @@ class NewClient:
                 "message": message,
                 "reciepients": contacts,
             }
-            return self.send_sms(payload)
+            return self.__send_sms(payload)
         except requests.exceptions.RequestException as e:
             raise e
 
@@ -90,7 +82,7 @@ class NewClient:
                 "message": message,
                 "channel": channel,
             }
-            return self.send_sms(payload)
+            return self.__send_sms(payload)
         except requests.exceptions.RequestException as e:
             raise e
 
@@ -103,11 +95,11 @@ class NewClient:
                 "message": message,
                 "contactGroup": contact_group,
             }
-            return self.send_sms(payload)
+            return self.__send_sms(payload)
         except requests.exceptions.RequestException as e:
             raise e
 
-    def send_sms(self, json_payload: Any):
+    def __send_sms(self, json_payload: Any):
         """SendSms sends a message to a list of contacts."""
         try:
             endpoint = f"{self.base_url}/notify/channels/messages/compose?error_context=CONTEXT_API_ERROR_JSON"

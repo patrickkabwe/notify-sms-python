@@ -21,7 +21,7 @@ NOTIFY_SMS_PASSWORD="***********"
 Before you begin, ensure you have Go installed on your system. This module requires Go version 1.21 or **higher** to run.
 
 ```go
-pip install notify_sms
+pip install notify_sms_py
 ```
 
 ## ⚡️ Quickstart
@@ -31,9 +31,11 @@ pip install notify_sms
 Returns all the senders(business name) you created on your profile
 
 ```python
-from notify_sms import NewClient
+from notify_sms_py import notify_sms
 
-client = NewClient(username="26097xxxxxx", password="*********")
+client = notify_sms.NewClient(
+    
+)
 res = client.get_senders()
 
 print(res)
@@ -46,7 +48,7 @@ print(res)
 Sends sms to a list of recipients defined as contacts
 
 ```python
-from notify_sms import NewClient
+from notify_sms_py import NewClient
 
 client = NewClient(username="26097xxxxxx", password="*********")
 
