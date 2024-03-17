@@ -1,3 +1,5 @@
+PYTHONPATH=.
+export PYTHONPATH
 test:
 	pytest -s --cov=notify --cov-fail-under=50 --cov-config=.coveragerc --cov-report=term-missing --cov-report=xml tests/
 
@@ -16,3 +18,9 @@ clean:
 
 format: clean
 	black --check .
+
+lint:
+	pylint notify tests --rcfile=.pylintrc
+
+all: clean test format
+	
