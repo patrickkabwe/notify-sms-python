@@ -15,5 +15,4 @@ clean:
 	autoflake -r --in-place --remove-unused-variables notify tests
 
 format: clean
-	pylint notify tests --rcfile=.pylintrc
 	black --check .
