@@ -19,7 +19,7 @@ classifiers = [
 keywords = ["sms", "bulk sms", "zambia"]
 authors = [{ name = "Patrick Kabwe", email = "patrickckabwe@gmail.com" }]
 dependencies = ["requests", 'importlib-metadata; python_version<"3.10"']
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 
 [project.urls]
 homepage = "https://github.com/patrickkabwe/notify_sms"
