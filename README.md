@@ -18,9 +18,9 @@ NOTIFY_SMS_PASSWORD="***********"
 
 ## ⚙️ Installation
 
-Before you begin, ensure you have Go installed on your system. This module requires Go version 1.21 or **higher** to run.
+Before you begin, ensure you have Python installed on your system. This module requires Python version 3.12 or **higher** to run.
 
-```go
+```python
 pip install notify_sms_py
 ```
 
