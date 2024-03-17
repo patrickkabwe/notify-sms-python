@@ -34,7 +34,8 @@ Returns all the senders(business name) you created on your profile
 from notify_sms_py import notify_sms
 
 client = notify_sms.NewClient(
-    
+    username="26097xxxxxx",
+    password="*********"
 )
 res = client.get_senders()
 
@@ -48,9 +49,12 @@ print(res)
 Sends sms to a list of recipients defined as contacts
 
 ```python
-from notify_sms_py import NewClient
+from notify_sms_py import notify_sms
 
-client = NewClient(username="26097xxxxxx", password="*********")
+client = notify_sms.NewClient(
+    username="26097xxxxxx",
+    password="*********"
+)
 
 res = client.send_to_contacts(contacts=["+26097xxxxxx"], message="Hello Patrick from Notify SMS", sender_id="1234888888888888888888")
 

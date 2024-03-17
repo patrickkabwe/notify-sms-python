@@ -23,4 +23,11 @@ lint:
 	pylint notify_sms_py tests --rcfile=.pylintrc
 
 all: clean test format
+
+build:
+	rm -rf dist
+	python3 -m build
+
+publish:
+	python3 -m twine upload dist/*
 	
