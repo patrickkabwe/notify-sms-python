@@ -3,8 +3,7 @@ from typing import Any, Dict, List
 
 import requests
 
-from notify_sms_py.notify_types import (APIResponse, AuthResponse,
-                                        SendersAPIResponse)
+from notify_sms_py.notify_types import APIResponse, AuthResponse, SendersAPIResponse
 
 
 class NewClient:

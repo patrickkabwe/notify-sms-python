@@ -1,7 +1,9 @@
 PYTHONPATH=.
 export PYTHONPATH
+APP_NAME=notify_sms_py
+WORKDIRS=${APP_NAME} tests
 test:
-	pytest -s --cov=notify_sms_py --cov-fail-under=50 --cov-config=.coveragerc --cov-report=term-missing --cov-report=xml tests/
+	pytest -s --cov=${APP_NAME} --cov-fail-under=50 --cov-config=.coveragerc --cov-report=term-missing --cov-report=xml tests/
 
 clean:
 	rm -rf .pytest_cache
@@ -14,15 +16,16 @@ clean:
 	rm -rf .mypy_cache
 	rm -rf .pytest_cache
 	rm -rf .mypy_cache
-	autoflake -r --in-place --remove-unused-variables notify_sms_py tests
+	autoflake -r --in-place --remove-unused-variables --remove-all-unused-imports ${WORKDIRS}
 
 format: clean
+	black .
 	black --check .
 
 lint:
-	pylint notify_sms_py tests --rcfile=.pylintrc
+	pylint ${WORKDIRS} --rcfile=.pylintrc
 
-all: clean test format
+all: lint format
 
 build:
 	rm -rf dist
