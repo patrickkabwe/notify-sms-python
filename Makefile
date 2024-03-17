@@ -14,7 +14,7 @@ clean:
 	rm -rf .mypy_cache
 	rm -rf .pytest_cache
 	rm -rf .mypy_cache
-	autoflake -r --in-place --remove-unused-variables notify tests
+	autoflake -r --in-place --remove-unused-variables notify_sms_py tests
 
 format: clean
 	black --check .
