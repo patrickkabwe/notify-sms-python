@@ -111,8 +111,9 @@ class NewClient:
         except requests.exceptions.RequestException as e:
             raise e
 
+    @classmethod
     def make_request(
-        self, method: str, endpoint: str, payload: Any, headers: Dict[str, str]
+            cls, method: str, endpoint: str, payload: Any, headers: Dict[str, str]
     ):
         """MakeRequest sends a message to a list of contacts."""
         try:
